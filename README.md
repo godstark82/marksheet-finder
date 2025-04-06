@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Marksheet Finder Application
 
-## Getting Started
+A web application to check if a student's marksheet is available based on data from a Google Sheets spreadsheet.
 
-First, run the development server:
+## Features
+
+- Search for marksheet availability by roll number
+- Displays student name and marksheet status
+- Bilingual interface (English and Hindi)
+- Responsive design for all devices
+
+## Setup Instructions
+
+1. Clone this repository
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up Google Sheets:
+   - Create a Google Sheets document with the following format:
+     - Column A: Roll Numbers
+     - Column B: Student Names
+     - Column C: Marksheet Availability (yes/no/true/false/1/0)
+   - Make sure your service account has access to the sheet (Share the Google Sheet with the service account email)
+
+4. Configure environment variables:
+   - Rename `.env.local.example` to `.env.local`
+   - Add your Google Sheet ID to the `.env.local` file
+   - Add your Google Cloud service account credentials to the `.env.local` file
+     (You can copy the values from your service account JSON file)
+
+5. Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Service Account Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the Google Sheets API:
+   - Go to "APIs & Services" > "Library"
+   - Search for "Google Sheets API"
+   - Click on it and press "Enable"
+4. Create a service account:
+   - Go to "APIs & Services" > "Credentials"
+   - Click "Create Credentials" > "Service Account"
+   - Enter a name and description for the service account
+   - Click "Done"
+5. Create a key for the service account:
+   - Click on the service account you just created
+   - Go to the "Keys" tab
+   - Click "Add Key" > "Create new key"
+   - Choose "JSON" and click "Create"
+   - The key file will be downloaded to your computer
+6. Share your Google Sheet with the service account email address (it looks like: `service-account-name@project-id.iam.gserviceaccount.com`)
 
-## Learn More
+## Google Sheets Setup
 
-To learn more about Next.js, take a look at the following resources:
+Your Google Sheets should have the following structure:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Roll Number | Student Name | Marksheet Available |
+|-------------|--------------|---------------------|
+| 12345       | John Doe     | Yes                 |
+| 67890       | Jane Smith   | No                  |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+This application can be easily deployed on Vercel or any other Next.js compatible hosting service.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
