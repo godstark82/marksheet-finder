@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Logo from './components/Logo';
 
 type SearchType = 'rollNumber' | 'name' | 'course';
@@ -58,8 +57,9 @@ export default function Home() {
       } else {
         setError(data.error || 'Failed to check marksheet availability');
       }
-    } catch (err) {
+    } catch (error) {
       setError('Failed to connect to the server. Please try again.');
+      console.error('Error checking marksheet:', error);
     } finally {
       setLoading(false);
     }
@@ -209,7 +209,7 @@ export default function Home() {
         
         <div className="mt-4 p-3 bg-gray-50 rounded-md text-sm text-gray-600">
           <p className="font-medium">Note:</p>
-          <p>Students with "Available" status can collect their marksheets from the administration office. Please bring your ID card for verification.</p>
+          <p>Students with &ldquo;Available&rdquo; status can collect their marksheets from the administration office. Please bring your ID card for verification.</p>
         </div>
       </div>
     </div>

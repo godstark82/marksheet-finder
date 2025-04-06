@@ -127,10 +127,6 @@ export async function GET(request: NextRequest) {
         const studentCourse = row[courseIndex]?.toString().trim().toLowerCase() || '';
         const courseMatch = studentCourse.includes(course.trim().toLowerCase());
         
-        // Check if marksheet is available
-        const marksheetStatus = row[marksheetIndex]?.toString().trim().toLowerCase() || '';
-        const isAvailable = ['yes', 'true', '1', 'available', 'y'].includes(marksheetStatus);
-        
         // Return this student if they're in the course
         return courseMatch;
       }).map(row => {
